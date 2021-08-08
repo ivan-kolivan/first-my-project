@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Последние статьи{% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/stylelist.css' %}">
+	<link rel="stylesheet" href="{% static 'css/ads.css' %}">
+{% endblock %}
+
+{% block categories %}
+	{% for categ in category %}
+		<div>
+			<a href="{% url 'articles:by_category' categ.pk %}">
+				<img class="nav_icon" src="{{ categ.icon.url }}">
+				<h5>{{ categ.name }}</h5>
+			</a>
+		</div>
+	{% endfor %}
+{% endblock %}
+
+
+{% block content %}
+	<h3 class="head">Новые статьи</h3>
+	{% if latest_articles_list %}
+
+		{% for a in latest_articles_list %}
+			<article>
+				<img class="device_image" class="article my_image" src="{{a.image.url}}">
+				
+				<div class="content">
+					<div class="article_head">
+						<h3 class="title"><a style="text-decoration: none; color: #17B7BB;" href="{% url 'articles:detail' a.id %}"><span></span>{{a.article_title}}</a></h3>
+						<div class="status"><img style="width: 18px; display: inline-block;" src="{% static 'images/eye_icon-icons.com_54399.png' %}" alt=""> <p>{{a.article_views}} просмотров</p>  <p>{{ a.category }}</p>  <p>{{ a.pub_date.day }}.{{ a.pub_date.month }}.{{ a.pub_date.year }}</p></div>
+					</div>
+					<p id="div" class="text">{{ a.article_text }}</p>
+					<div class="buttons ml-20">
+						{% if a.buy_link != '#' %}
+							<a target="_blank" href="{{a.buy_link}}"><button class="btn btn-outline-success buy">Купить</button></a>
+						{% endif %}
+						
+						<a href="{% url 'articles:detail' a.id %}"><button class="btn btn-outline-primary buy">Подробнее</button></a>
+					</div>
+				</div>
+				
+
+			</article>
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			{% endfor %}
+			
+	{% else %}
+	Статьи не найдены ... 
+	{% endif %}
+	<script src="{% static 'js/list.js' %}"></script>
+{% endblock %}
+
+{% block ads %}
+	{% if latest_ad_list %}
+		{% for a in latest_ad_list %}
+			<div class="ads">
+				{{ a.html_code|safe }}
+			</div>
+		{% endfor %}
+	{% endif %}
+{% endblock %}
+
+
+

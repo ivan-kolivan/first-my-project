@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block ads %}
+	
+	<!-- admitad.banner: dc6xuh1mi0bf9164897716525dc3e8 AliExpress WW -->
+<a target="_blank" rel="nofollow" href="https://alitems.com/g/dc6xuh1mi0bf9164897716525dc3e8/?i=4"><img width="160" height="600" border="0" src="https://ad.admitad.com/b/dc6xuh1mi0bf9164897716525dc3e8/" alt="AliExpress WW"/></a>
+<!-- /admitad.banner -->
+	{% for i in latest_ads_list %}
+
+		{{i.html_code}}
+
+	{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'list.html' %}
+{% load static %}
+
+{% block title %}{{article.article_title}}{% endblock %}
+
+{% block content %}
+
+	<img class="detail-image" style="width: 100%;" src="{{article.image.url}}" alt="">
+	<div class="article-content">
+		<h1>{{article.article_title}}</h1>
+
+		<div class="detai-status"><img style="width: 18px; display: inline-block;" src="{% static 'images/eye_icon-icons.com_54399.png' %}" alt=""> <p>{{article.article_views}} просмотров</p>  <p>{{ article.category }}</p>  <p>{{ article.pub_date.day }}.{{ article.pub_date.month }}.{{ article.pub_date.year }}</p></div>
+
+		{% autoescape off %} <p>{{article.article_text}}</p> {% endautoescape %}
+
+		<hr>
+	</div>
+	
+	
+	{% if latest_comment_list %}
+		
+		{% for c in latest_comment_list %}
+		<div class="comments">
+			<p>
+				<strong>{{c.author_name}}</strong>
+				<p style="margin-left: 20px">{{c.comment_text}}</p>
+				<hr>
+			</p>
+		</div>
+		{% endfor %}
+
+	{% else %}
+	Комментарии не найдены. Станьте первым!
+	{% endif %}
+
+	<form action="{% url 'articles:leave_comment' article.id %}" method="POST">
+		
+		{% csrf_token %}
+
+		<input class="form-control" type="text" id="exampleInputPassword1" required placeholder="Ваше имя" name="name"><br>
+		<textarea class="form-control" name="text" required="" placeholder="Текст комментария" cols="30" rows="10"></textarea>
+		<br>
+		<button type="submit" class="btn btn-info">Оставить комментарий</button>
+	</form>
+
+	<style>
+		.article-content h1 {
+			color: #17B7BB;
+		}
+		.article-content p {
+			font-size: 20px;
+			color: #808995;
+		}
+		.detai-status p {
+			display: inline-block;
+			color: #BA55D3;
+			margin-left: 10px;
+		}
+		hr {
+			color: #17B7BB;
+			background-color: #17B7BB;
+			height: 1px;
+		}
+		.comments {
+			color: #808995;
+		}
+		@media screen and (max-width: 1200px) {
+			section {
+				padding: 5px;
+				margin-top: 0;
+			}
+			.article-content {
+				padding: 5px;
+			}
+			/* .detai-status p {
+				margin-left: 0px;
+			} */
+		}
+		@media screen and (max-width: 900px) {
+			.article-content p {
+				font-size: 18px;
+			}
+			.article-content h1 {
+				font-size: 28px;
+			}
+		}
+	</style>
+{% endblock %}

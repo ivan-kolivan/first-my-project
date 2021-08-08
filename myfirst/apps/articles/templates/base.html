@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Мой сайт{% endblock %}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block head %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="MobileOptimized" content="320">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+	    <a class="navbar-brand" href="#"><img style="width: 180px;" src="{% static 'images/logo.png' %}" alt=""></a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+
+	    <div class="collapse navbar-collapse" id="navbarsExample07">
+	      <ul class="navbar-nav mr-auto">
+	        
+	      </ul>
+	    </div>
+	</nav>
+
+	<div class="mobile-nav">
+		<div class="element-nav">
+			<h3 class="head">Навигация</h3>
+			<div class="navigator">
+				<div class="first_div"><a href="{% url 'articles:index' %}"><img class="nav_icon" src="{% static 'images/flag.png' %}" alt=""><h5>Главная</h5></a></div>
+				
+			</div>
+		</div>
+		<div class="element-nav">
+			<h3 class="head">Реклама</h3>
+			<div id="menu">
+				{% block ads1 %}{% endblock %}
+			</div>
+		</div>
+	</div>
+	<div class="btn-menu">Меню</div>
+
+	<section class="main-content">
+		<div class="row">
+			<div id="panel" class="col-md">
+				<div>
+					{% block content %}{% endblock %}
+				</div>
+			</div>
+			<div id="navigator" class="col-md-3 n">
+				<div class="element-nav">
+					<h3 class="head">Навигация</h3>
+					<div class="navigator">
+						<div class="first_div"><a href="{% url 'articles:index' %}"><h5>Главная</h5></a></div>
+						{% block categories %}{% endblock %}
+					</div>
+				</div>
+				<div class="element-nav">
+					<h3 class="head">Реклама</h3>
+					<div id="menu">
+						{% block ads %}{% endblock %}
+					</div>
+				</div>
+			</div>			
+		</div>
+	</section>
+
+	<style>
+		body {
+			overflow-x: hidden;
+			background-image: url("{% static 'images/background.jpg' %}");
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+	<script src="{% static 'js/base.js' %}"></script>
+  
+	<!-- Popper.js для всплывающих подсказок -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+	  crossorigin="anonymous"></script>
+
+	<!-- Последний скомпилированный и минимизированный Bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+	  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	  crossorigin="anonymous"></script>
+</body>
+</html>

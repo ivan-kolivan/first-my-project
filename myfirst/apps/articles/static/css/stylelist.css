@@ -1,0 +1,82 @@
+article {
+	display: inline-flex;
+	margin-bottom: 30px;
+	background: #2F3237;
+	box-shadow: 0 0 3px black;
+}
+.content {
+	position: relative;
+	display: inline-block;
+	height: 100px;
+	vertical-align: top;
+	flex-grow: 1;
+	padding: 15px;
+}
+.device_image {
+	display: inline-block;
+	width: 330px;
+}
+.text {
+	color: #88919D;
+	overflow: hidden;
+	height: 250px;
+	margin-right: 5px;
+}
+.status {
+	display: inline;
+	color: #BA55D3;
+	margin-left: 10px;
+}
+.buttons {
+	position: absolute;
+	right: 15px;
+	bottom: 10px;
+}
+.nav_icon {
+	width: 30px;
+	display: inline;
+}
+.status p {
+	display: inline-block;
+	margin-left: 7px;
+	margin-bottom: 5px;
+}
+.ml-20 {
+	margin-left: 20px;
+}
+.title:hover {
+	opacity: .8;
+}
+
+@media screen and (min-width: 1200px) {
+	article:hover {
+		-webkit-transform: translate(5px, -5px);
+		-ms-transform: translate(5px, -5px);
+		-o-transform: translate(5px, -5px);
+		transform: translate(5px, -5px);
+		box-shadow: 0 0 10px black;
+		transition-duration: .10s;
+	}
+	article {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 1200px) {
+	.device_image {
+		width: 100%;
+	}
+	.content {
+		display: block;
+	}
+	article {
+		display: block;
+	}
+	.text {
+		padding-right: 30px;
+		margin-top: 30px;
+	}
+	.mobile-nav {
+		position: fixed;
+		top: 0;
+	}
+}
